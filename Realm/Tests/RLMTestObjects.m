@@ -52,8 +52,7 @@
 @end
 
 @implementation IndexedStringObject
-+ (NSArray *)indexedProperties
-{
++ (NSArray *)indexedProperties {
     return @[@"stringCol"];
 }
 @end
@@ -67,6 +66,12 @@
 @implementation RequiredPropertiesObject
 + (NSArray *)requiredProperties {
     return @[@"stringCol", @"binaryCol"];
+}
+@end
+
+@implementation IgnoredURLObject
++ (NSArray *)ignoredProperties {
+    return @[@"url"];
 }
 @end
 

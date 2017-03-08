@@ -18,13 +18,13 @@
 
 #import "RLMTestCase.h"
 
-#import <objc/runtime.h>
 #import "RLMObjectSchema_Private.h"
 #import "RLMProperty_Private.h"
 #import "RLMRealm_Dynamic.h"
 
-@interface PropertyTests : RLMTestCase
+#import <objc/runtime.h>
 
+@interface PropertyTests : RLMTestCase
 @end
 
 @implementation PropertyTests
@@ -137,6 +137,20 @@
     XCTAssertNoThrow(RLMValidateSwiftPropertyName(@"allocate"));
 
     XCTAssertNoThrow(RLMValidateSwiftPropertyName(@"__alloc"));
+}
+
+- (void)testTypeToString {
+    XCTAssertEqualObjects(RLMTypeToString(RLMPropertyTypeString),   @"string");
+    XCTAssertEqualObjects(RLMTypeToString(RLMPropertyTypeInt),      @"int");
+    XCTAssertEqualObjects(RLMTypeToString(RLMPropertyTypeBool),     @"bool");
+    XCTAssertEqualObjects(RLMTypeToString(RLMPropertyTypeDate),     @"date");
+    XCTAssertEqualObjects(RLMTypeToString(RLMPropertyTypeData),     @"data");
+    XCTAssertEqualObjects(RLMTypeToString(RLMPropertyTypeDouble),   @"double");
+    XCTAssertEqualObjects(RLMTypeToString(RLMPropertyTypeFloat),    @"float");
+    XCTAssertEqualObjects(RLMTypeToString(RLMPropertyTypeObject),   @"object");
+    XCTAssertEqualObjects(RLMTypeToString(RLMPropertyTypeArray),    @"array");
+
+    XCTAssertEqualObjects(RLMTypeToString((RLMPropertyType)-1),     @"Unknown");
 }
 
 @end
